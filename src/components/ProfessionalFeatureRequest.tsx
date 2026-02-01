@@ -24,7 +24,11 @@ export default function ProfessionalFeatureRequest({ type = 'feature' }: Profess
     
     try {
       // Send to Discord webhook
-      const webhookUrl = 'https://discordapp.com/api/webhooks/1467425662267560019/Fy7Tx0azf5ky7sl7KaEMPNGLRGFrgh_apeW_WXk9osda5QMU3BmoJ1x6LX5JTQd9g0Ro';
+      const webhookUrl = import.meta.env.VITE_DISCORD_WEBHOOK_URL;
+      
+      if (!webhookUrl) {
+        throw new Error('Discord webhook URL not configured');
+      }
       
       const discordPayload = {
         embeds: [{
