@@ -48,7 +48,7 @@ export default function SelectForm({ onGenerate, initialJoinType, formTitle, sho
     }));
   };
 
-  const handleJoinChange = (index: number, field: keyof JoinClause, value: any) => {
+  const handleJoinChange = (index: number, field: keyof JoinClause, value: string) => {
     setState(prev => ({
       ...prev,
       joins: prev.joins?.map((join, i) =>
