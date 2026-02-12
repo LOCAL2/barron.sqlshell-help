@@ -187,7 +187,17 @@ export const generateSQL = {
     
     if (state.joins && state.joins.length > 0) {
       state.joins.forEach(join => {
-        sql += ` ${join.type} JOIN \`${join.table}\` ON ${join.on}`;
+        if (join.type === 'CROSS') {
+          // CROSS JOIN ไม่ต้องมี ON
+          sql += ` CROSS JOIN \`${join.table}\``;
+        } else if (join.type === 'SELF') {
+          // Self Join ต้องมี alias
+          const alias = join.alias || `${join.table}_2`;
+          sql += ` INNER JOIN \`${join.table}\` AS \`${alias}\` ON ${join.on}`;
+        } else {
+          // INNER, LEFT, RIGHT JOIN
+          sql += ` ${join.type} JOIN \`${join.table}\` ON ${join.on}`;
+        }
       });
     }
     

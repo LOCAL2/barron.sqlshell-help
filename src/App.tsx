@@ -69,7 +69,18 @@ function SQLGenerator() {
   const renderForm = () => {
     switch (selectedOperation) {
       case 'SELECT':
-        return <SelectForm onGenerate={(state) => handleGenerate(generateSQL.select(state))} />;
+        return <SelectForm 
+          onGenerate={(state) => handleGenerate(generateSQL.select(state))} 
+          showJoinSection={false}
+        />;
+      
+      case 'SELECT_JOIN':
+        return <SelectForm 
+          onGenerate={(state) => handleGenerate(generateSQL.select(state))} 
+          initialJoinType="INNER"
+          formTitle="JOIN - เชื่อมตาราง"
+          showJoinSection={true}
+        />;
       
       case 'INSERT':
         return <InsertForm onGenerate={(state) => handleGenerate(generateSQL.insert(state))} />;

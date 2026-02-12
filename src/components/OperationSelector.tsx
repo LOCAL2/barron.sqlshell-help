@@ -38,6 +38,7 @@ const operations = [
     icon: Search,
     items: [
       { id: 'SELECT' as SQLOperation, label: 'ค้นหาข้อมูล (SELECT)', color: '#8b5cf6' },
+      { id: 'SELECT_JOIN' as SQLOperation, label: 'JOIN (เชื่อมตาราง)', color: '#06b6d4' },
     ],
   },
 ];
@@ -65,9 +66,6 @@ export default function OperationSelector({ selectedOperation, onSelectOperation
                 }}
               >
                 <span className="operation-label">{item.label}</span>
-                {selectedOperation === item.id && (
-                  <span className="operation-badge">เลือกอยู่</span>
-                )}
               </button>
             ))}
           </div>

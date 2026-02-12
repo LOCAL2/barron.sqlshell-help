@@ -17,7 +17,8 @@ export type SQLOperation =
   | 'INSERT'
   | 'UPDATE'
   | 'DELETE'
-  | 'SELECT';
+  | 'SELECT'
+  | 'SELECT_JOIN';
 
 // ALTER TABLE Sub-operations
 export type AlterTableOperation =
@@ -90,9 +91,10 @@ export interface SelectFormState {
 }
 
 export interface JoinClause {
-  type: 'INNER' | 'LEFT' | 'RIGHT' | 'FULL';
+  type: 'INNER' | 'LEFT' | 'RIGHT' | 'CROSS' | 'SELF';
   table: string;
-  on: string;
+  alias?: string;
+  on?: string;
 }
 
 export interface InsertFormState {
