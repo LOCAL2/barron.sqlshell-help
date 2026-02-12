@@ -168,7 +168,7 @@ export default function SelectForm({ onGenerate, initialJoinType, formTitle, sho
                 </div>
               )}
 
-              {join.type !== 'CROSS' && (
+              {(join.type === 'INNER' || join.type === 'LEFT' || join.type === 'RIGHT' || join.type === 'SELF') && (
                 <div className="form-group">
                   <label>เงื่อนไข ON</label>
                   <input
@@ -176,7 +176,7 @@ export default function SelectForm({ onGenerate, initialJoinType, formTitle, sho
                     value={join.on || ''}
                     onChange={(e) => handleJoinChange(idx, 'on', e.target.value)}
                     placeholder="users.id = orders.user_id"
-                    required={join.type !== 'CROSS'}
+                    required
                   />
                   <div className="form-hint">💡 ระบุว่าจะเชื่อมด้วย column ไหน</div>
                 </div>
